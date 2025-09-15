@@ -5,18 +5,29 @@
 #include <ctime>
 
 // CLASS CONSTRUCT, DESTRUCT & INIT
-Account::Account(int initial_deposit): _accountIndex(_nbAccounts - 1), _amount(initial_deposit), _nbDeposits(0), _nbWithdrawals(0)
+Account::Account(int initial_deposit): _accountIndex(_nbAccounts), _amount(initial_deposit), _nbDeposits(0), _nbWithdrawals(0)
 {
 	_nbAccounts++;
 	_totalAmount += _amount;
+
+	_displayTimestamp();
+	std::cout << " index:" << _accountIndex << ";";
+	std::cout << "amount:" << _amount << ";";
+	std::cout << "created" << std::endl;
+}
+
+Account::~Account(void)
+{
+	_displayTimestamp();
+	std::cout << " index:" << _accountIndex << ";";
+	std::cout << "amount:" << _amount << ";";
+	std::cout << "closed" << std::endl;
 }
 
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
 int Account::_totalNbDeposits = 0;
 int Account::_totalNbWithdrawals = 0;
-
-Account::~Account(){}
 
 
 // GETTERS
@@ -43,13 +54,17 @@ int Account::getNbWithdrawals()
 void Account::displayAccountsInfos()
 {
 	_displayTimestamp();
-	std::cout << "accounts:" << _nbAccounts << ";total:" << _totalAmount
-		<< ";deposits:" << _totalNbDeposits << ";withdrawals:" << _totalNbWithdrawals << std::endl;
+	std::cout << " accounts:" << getNbAccounts() << ";total:" << getTotalAmount()
+		<< ";deposits:" << getNbDeposits() << ";withdrawals:" << getNbDeposits() << std::endl;
 }
 
 void Account::displayStatus(void) const
 {
-	std::cout << "coucou" << std::endl;
+	_displayTimestamp();
+	std::cout << " index:" << this->_accountIndex << ";";
+	std::cout << "amount:" << checkAmount() << ";";
+	std::cout << "deposits:" << this->_nbDeposits << ";";
+	std::cout << "withdrawals:" << this->_nbWithdrawals << std::endl;
 }
 
 void Account::makeDeposit(int deposit)
@@ -68,8 +83,8 @@ bool Account::makeWithdrawal(int withdrawal)
 	}
 	this->_amount -= withdrawal;
 	_totalAmount -= withdrawal;
-	this->_nbDeposits++;
-	_totalNbDeposits++;
+	this->_nbWithdrawals++;
+	_totalNbWithdrawals++;
 	return true;
 }
 
@@ -81,5 +96,5 @@ int Account::checkAmount() const
 void Account::_displayTimestamp()
 {
 	time_t timestamp = time(&timestamp);
-	std::cout << timestamp << std::endl;
+	std::cout << "[" << timestamp << "]";
 }
