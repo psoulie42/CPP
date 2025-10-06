@@ -1,6 +1,6 @@
 #include "classFixed.hpp"
 
-int	const& Fixed::getRawBits() const
+int Fixed::getRawBits() const
 {
 	std::cout << "getRawBits member function called" << std::endl;
 	return this->_val;
