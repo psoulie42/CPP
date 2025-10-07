@@ -31,10 +31,10 @@ class	Fixed
 		bool operator!=(const Fixed&) const;
 
 	//ARITHMETIC OPERATOR OVERLOADS:
-		float operator+(const Fixed&);
-		float operator-(const Fixed&);
-		float operator*(const Fixed&);
-		float operator/(const Fixed&);
+		float operator+(const Fixed&) const;
+		float operator-(const Fixed&) const;
+		float operator*(const Fixed&) const;
+		float operator/(const Fixed&) const;
 
 	//INCREMENTATION OPERATOR OVERLOADS:
 		Fixed operator++();

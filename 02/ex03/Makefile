@@ -14,12 +14,15 @@ SRCSDIR = ./
 ODIR = ./
 FILES =	$(SRCSDIR)main.cpp \
 		$(SRCSDIR)classFixed.cpp \
-
+		$(SRCSDIR)classPoint.cpp \
+		$(SRCSDIR)bsp.cpp \
 
 OFILES = $(SRCSDIR)main.o \
 		$(SRCSDIR)classFixed.o \
+		$(SRCSDIR)classPoint.o \
+		$(SRCSDIR)bsp.o \
 
-NAME = fixed
+NAME = bsp
 
 all: $(NAME)
 

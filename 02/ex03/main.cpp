@@ -1,45 +1,15 @@
 #include "classFixed.hpp"
+#include "classPoint.hpp"
 
 int main( void ) 
 {
-	Fixed a;
-	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
-	
+	Point a(1, 0);
+	Point b(2, 3.5);
+	Point c(3, 1);
+	Point p1(1, 2);
+	Point p2(2, 1);
 
-	std::cout << "------------ TESTING INCREMENTATION ------------\n" << std::endl;
-	std::cout << a << std::endl;
-	std::cout << ++a << std::endl;
-	std::cout << a << std::endl;
-	std::cout << a++ << std::endl;
-	std::cout << a << std::endl;
-	std::cout << b << std::endl;
-	std::cout << std::endl;
-
-	std::cout << "------------ TESTING COMPARISON OPERATORS ------------\n" << std::endl;
-	Fixed c = a;
-	std::cout << "This should alternate between 1 and 0:" << std::endl; 
-	std::cout << (a < b) << std::endl;
-	std::cout << (a > b) << std::endl;
-	std::cout << (a <= c) << std::endl;
-	std::cout << (a >= b) << std::endl;
-	std::cout << (a == c) << std::endl;
-	std::cout << (a == b) << std::endl;
-	std::cout << (a != b) << std::endl;
-	std::cout << (a != c) << std::endl;
-	std::cout << std::endl;
-
-	std::cout << "------------ TESTING ARITHMETIC OPERATORS ------------\n" << std::endl;
-	std::cout << (a + b) << std::endl;
-	std::cout << (a - b) << std::endl;
-	std::cout << (a * b) << std::endl;
-	std::cout << (a / b) << std::endl;
-	std::cout << std::endl;
-
-
-	std::cout << "------------ TESTING MAX & MIN ------------\n" << std::endl;
-	std::cout << Fixed::min( a, b ) << std::endl;
-	std::cout << Fixed::max( a, b ) << std::endl;
-	std::cout << std::endl;
-
+	std::cout << bsp(a, b, c, p1) << std::endl;
+	std::cout << bsp(a, b, c, p2) << std::endl;
 	return 0;
 }

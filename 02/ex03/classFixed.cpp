@@ -99,22 +99,22 @@ bool Fixed::operator!=(const Fixed& fix) const
 
 //------------ ARITHMETIC OPERATOR OVERLOADS ------------
 
-float Fixed::operator+(const Fixed& fix)
+float Fixed::operator+(const Fixed& fix) const
 {
 	return this->toFloat() + fix.toFloat();
 }
 
-float Fixed::operator-(const Fixed& fix)
+float Fixed::operator-(const Fixed& fix) const
 {
 	return this->toFloat() - fix.toFloat();
 }
 		
-float Fixed::operator*(const Fixed& fix)
+float Fixed::operator*(const Fixed& fix) const
 {
 	return this->toFloat() * fix.toFloat();
 }
 
-float Fixed::operator/(const Fixed& fix)
+float Fixed::operator/(const Fixed& fix) const
 {
 	return this->toFloat() / fix.toFloat();
 }
