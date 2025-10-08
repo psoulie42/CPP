@@ -3,7 +3,7 @@
 // ------------- MEMBER FUNCTIONS -------------
 
 void	ClapTrap::attack(const std::string& target)
-{	
+{
 	if (this->_energyPoints <= 0) {
 		std::cout << this->_name << " is exhausted and doesn't want to attack. Try again tomorrow." << std::endl;
 		return; }
@@ -11,7 +11,7 @@ void	ClapTrap::attack(const std::string& target)
 		std::cout << this->_name << " is dead. Maybe if you ask kindly it'll come back?" << std::endl;
 		return; }
 	std::cout << this->_name << " attacks " << target
-		<< " causing " << this->_attackDamage << " points of damage!" << std::endl;
+		<< ", causing " << this->_attackDamage << " points of damage!" << std::endl;
 	this->_energyPoints--;
 }
 
@@ -37,6 +37,8 @@ void	ClapTrap::beRepaired(unsigned int amount)
 }
 
 // ------------- CONSTRUCTOR & DESTRUCTOR -------------
+
+ClapTrap::ClapTrap() {}
 
 ClapTrap::ClapTrap(std::string name): 
 	_name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0) 
