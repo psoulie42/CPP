@@ -36,6 +36,26 @@ void	ClapTrap::beRepaired(unsigned int amount)
 	this->_energyPoints--;
 }
 
+std::string	ClapTrap::getName()
+{
+	return this->_name;
+}
+
+int	ClapTrap::getHitPoints()
+{
+	return this->_hitPoints;
+}
+
+int ClapTrap::getEnergyPoints()
+{
+	return this->_energyPoints;
+}
+
+int ClapTrap::getAttackDamage()
+{
+	return this->_attackDamage;
+}
+
 // ------------- CONSTRUCTOR & DESTRUCTOR -------------
 
 ClapTrap::ClapTrap(std::string name): 

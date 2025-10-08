@@ -17,6 +17,7 @@ void	ScavTrap::attack(const std::string& target)
 		return; }
 	std::cout << this->_name << " DESTROYS " << target << ", dealing " << this->_attackDamage
 		<< " points of damage." << std::endl;
+	this->_energyPoints--;
 }
 
 // CONSTRUCTOR & DESTRUCTOR
