@@ -20,12 +20,18 @@ void	ScavTrap::attack(const std::string& target)
 	this->_energyPoints--;
 }
 
+void	ScavTrap::sstatus()
+{
+	std::cout << this->_name << " status: HP: " << this->_hitPoints << " EP: " << this->_energyPoints
+		<< " DMG: " << this->_attackDamage << std::endl;
+}
+
 // CONSTRUCTOR & DESTRUCTOR
 
-ScavTrap::ScavTrap(std::string name): ClapTrap(name)
+ScavTrap::ScavTrap(std::string name): ClapTrap(name), _ownEnergyPoints(50), _ownAttackDamage(20)
 {
-	this->_energyPoints = 50;
-	this->_attackDamage = 20;
+	this->_energyPoints = this->_ownEnergyPoints;
+	this->_attackDamage = this->_ownAttackDamage;
 	std::cout << "ScavTrap " << name << " created" << std::endl;
 }
 

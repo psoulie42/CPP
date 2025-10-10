@@ -20,12 +20,18 @@ void	FragTrap::attack(std::string target)
 	this->_energyPoints--;
 }
 
+void	FragTrap::fstatus()
+{
+	std::cout << this->_name << " status: HP: " << this->_hitPoints << " EP: " << this->_energyPoints
+		<< " DMG: " << this->_attackDamage << std::endl;
+}
+
 // ------------- CONSTRUCTOR & DESTRUCTOR -------------
 
-FragTrap::FragTrap(std::string name): ClapTrap(name)
+FragTrap::FragTrap(std::string name): ClapTrap(name), _ownEnergyPoints(100), _ownAttackDamage(30)
 {
-	this->_energyPoints = 100;
-	this->_attackDamage = 30;
+	this->_energyPoints = this->_ownEnergyPoints;
+	this->_attackDamage = this->_ownAttackDamage;
 	std::cout << "FragTrap " << name << " created" << std::endl;
 }
 

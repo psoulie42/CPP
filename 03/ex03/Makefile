@@ -9,21 +9,23 @@ COLOUR_RESET = \033[0m
 REPLACE = \033[1A\033[K\033[A
 
 CC = c++
-CFLAGS = -Wall -Wextra -std=c++98
+CFLAGS = -Wall -Wextra -Wshadow -std=c++98
 SRCSDIR = ./
 ODIR = ./
 FILES =	$(SRCSDIR)main.cpp \
 		$(SRCSDIR)classClapTrap.cpp \
 		$(SRCSDIR)classScavTrap.cpp \
 		$(SRCSDIR)classFragTrap.cpp \
+		$(SRCSDIR)classDiamondTrap.cpp \
 
 
 OFILES = $(SRCSDIR)main.o \
 		$(SRCSDIR)classClapTrap.o \
 		$(SRCSDIR)classScavTrap.o \
 		$(SRCSDIR)classFragTrap.o \
+		$(SRCSDIR)classDiamondTrap.o \
 
-NAME = fragTrap
+NAME = DiamondTrap
 
 all: $(NAME)
 
@@ -33,8 +35,8 @@ $(ODIR)%.o: $(SRCSDIR)%.cpp
 
 $(NAME): $(OFILES)
 	@$(CC) $(CFLAGS) $(OFILES) -o $(NAME)
-	@echo "$(YELLOW)$(BOLD)Executable: $@$(COLOUR_RESET)"
 	@echo "$(GREEN)$(BOLD)🎊 Compilation complete! 🎊$(COLOUR_RESET)"
+	@echo "$(CYAN)$(BOLD)Executable: $@$(COLOUR_RESET)"
 
 clean:
 	@echo "$(RED)$(BOLD)🧹 Removing object files...$(COLOUR_RESET)"

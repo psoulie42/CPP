@@ -1,19 +1,14 @@
 #include "classScavTrap.hpp"
 #include "classFragTrap.hpp"
+#include "classDiamondTrap.hpp"
 
 int main()
 {
-	FragTrap f("Fraggy");
-	ScavTrap s("Scavvy");
+	DiamondTrap d("Shakra");
 	std::cout << std::endl;
 
-	f.highFivesGuys();
-	s.guardGate();
-	s.attack(f.getName());
-	f.attack(s.getName());
-	std::cout << std::endl;
-
-
+	d.whoAmI();
+	d.storyTelling();
 	std::cout << std::endl;
 
 	return (0);
