@@ -4,6 +4,7 @@
 
 int main()
 {
+	std::cout << "------------- TESTING LEAKS -------------" << std::endl;
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
 	std::cout << std::endl;
@@ -12,6 +13,7 @@ int main()
 	delete i;
 	std::cout << std::endl;
 
+	std::cout << "------------- TESTING DEPTH OF DOG COPIES -------------" << std::endl;
 	Dog doggy;
 	Dog doggo(doggy);
 	std::cout << std::endl;
@@ -25,6 +27,7 @@ int main()
 	std::cout << "Doggy go " << (*doggy.getBrain()).getIdea(0) << std::endl;
 	std::cout << std::endl;
 	
+	std::cout << "------------- SHOWING BAD EXAMPLE -------------" << std::endl;
 	WrongDog badDoggy;
 	WrongDog badDoggo(badDoggy);
 	std::cout << std::endl;
