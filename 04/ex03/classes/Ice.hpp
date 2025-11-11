@@ -7,13 +7,14 @@
 
 class Ice: AMateria
 {
-	protected:
-		const std::string& type;
 	public:
+		Ice* clone() const;
+		void use(Icharacter& target);
+		
 		Ice(const std::string& type);
-		const std::string& getType() const;
-
-		virtual AMateria* clone() const;
-}
+		Ice(const Ice&);
+		operator=(const Ice&);
+		~Ice();
+};
 
 #endif
