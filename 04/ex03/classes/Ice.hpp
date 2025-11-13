@@ -4,16 +4,17 @@
 #include <string>
 #include <iostream>
 #include "AMateria.hpp"
+#include "ICharacter.hpp"
 
-class Ice: AMateria
+class Ice: public AMateria
 {
 	public:
 		Ice* clone() const;
-		void use(Icharacter& target);
+		void use(ICharacter& target);
 		
-		Ice(const std::string& type);
+		Ice();
 		Ice(const Ice&);
-		operator=(const Ice&);
+		Ice operator=(const Ice&);
 		~Ice();
 };
 

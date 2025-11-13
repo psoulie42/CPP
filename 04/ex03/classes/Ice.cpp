@@ -4,7 +4,7 @@
 
 void	Ice::use(ICharacter& target)
 {
-	std::cout << "* shoots an ice bolt at " << target->name << " *"
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *"
 		<< std::endl;
 	delete this;
 }
@@ -18,11 +18,10 @@ Ice* Ice::clone() const
 
 Ice::Ice(): AMateria("ice") {}
 
-Ice::Ice(const Ice& b): type(b->type) {}
+Ice::Ice(const Ice& b): AMateria("ice") {}
 
-Ice::operator=(const Ice& b)
+Ice Ice::operator=(const Ice& b)
 {
-	if (this != &b)
-		type = b->type;
+	this->type = "ice";
 	return *this;
 }

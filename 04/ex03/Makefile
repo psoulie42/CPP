@@ -12,25 +12,23 @@ CC = c++
 CFLAGS = -Wall -Wextra -std=c++98 -g
 SRCSDIR = ./
 CLASSES = classes/
-W_CLASSES = wrongClasses/
 ODIR = ./
 FILES =	$(SRCSDIR)main.cpp \
-		$(CLASSES)AAnimal.cpp \
-		$(CLASSES)Cat.cpp \
-		$(CLASSES)Dog.cpp \
-		$(CLASSES)Brain.cpp \
-		$(W_CLASSES)WrongAnimal.cpp \
-		$(W_CLASSES)WrongDog.cpp \
+		$(CLASSES)AMateria.cpp \
+		$(CLASSES)Character.cpp \
+		$(CLASSES)Cure.cpp \
+		$(CLASSES)Ice.cpp \
+		$(CLASSES)MateriaSource.cpp \
+
 
 OFILES = $(SRCSDIR)main.o \
-		$(CLASSES)AAnimal.o \
-		$(CLASSES)Cat.o \
-		$(CLASSES)Dog.o \
-		$(CLASSES)Brain.o \
-		$(W_CLASSES)WrongAnimal.o \
-		$(W_CLASSES)WrongDog.o \
+		$(CLASSES)AMateria.o \
+		$(CLASSES)Character.o \
+		$(CLASSES)Cure.o \
+		$(CLASSES)Ice.o \
+		$(CLASSES)MateriaSource.o \
 
-NAME = AAnimal
+NAME = Materia
 
 all: $(NAME)
 

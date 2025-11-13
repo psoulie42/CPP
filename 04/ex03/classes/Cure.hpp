@@ -4,16 +4,18 @@
 #include <string>
 #include <iostream>
 #include "AMateria.hpp"
+#include "ICharacter.hpp"
 
-class Cure: AMateria
+class Cure: public AMateria
 {
 	public:
 		Cure* clone() const;
-		void use(Icharacter& target);
+		void use(ICharacter& target);
 		
 		Cure(const std::string& type);
+		Cure();
 		Cure(const Cure&);
-		operator=(const Cure&);
+		Cure& operator=(const Cure&);
 		~Cure();
 };
 
