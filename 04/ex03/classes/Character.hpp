@@ -6,15 +6,15 @@
 
 #define INV_SIZE 4
 
-class Character: public ICharacter
+class Character: virtual public ICharacter
 {
-	public:
+	private:
 		std::string name;
 		AMateria* inventory[INV_SIZE];
 
-	private:
+	public:
 		const std::string& getName() const;
-		void equip(AMateria*);
+		void equip(AMateria* m);
 		void unequip(int i);
 		void use(int i, ICharacter& target);
 		AMateria* getMateria(int i) const;

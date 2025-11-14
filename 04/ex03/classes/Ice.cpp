@@ -18,10 +18,16 @@ Ice* Ice::clone() const
 
 Ice::Ice(): AMateria("ice") {}
 
-Ice::Ice(const Ice& b): AMateria("ice") {}
+Ice::Ice(const Ice& b): AMateria()
+{
+	type = b.type;
+}
 
 Ice Ice::operator=(const Ice& b)
 {
-	this->type = "ice";
+	if (this != &b)
+		this->type = b.type;
 	return *this;
 }
+
+Ice::~Ice() {}
