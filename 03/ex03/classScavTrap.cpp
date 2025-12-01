@@ -28,11 +28,41 @@ void	ScavTrap::sstatus()
 
 // CONSTRUCTOR & DESTRUCTOR
 
-ScavTrap::ScavTrap(std::string name): ClapTrap(name), _ownEnergyPoints(50), _ownAttackDamage(20)
+ScavTrap::ScavTrap(std::string name): ClapTrap(name)
 {
-	this->_energyPoints = this->_ownEnergyPoints;
-	this->_attackDamage = this->_ownAttackDamage;
+	this->_gateKeeping = false;
+	this->_energyPoints = 50;
+	this->_attackDamage = 20;
 	std::cout << "ScavTrap " << name << " created" << std::endl;
+}
+
+ScavTrap::ScavTrap(): ClapTrap("Johnny")
+{
+	this->_gateKeeping = false;
+	this->_energyPoints = 50;
+	this->_attackDamage = 20;
+	std::cout << "Default ScavTrap created" << std::endl;
+}
+
+ScavTrap::ScavTrap(const ScavTrap& b): ClapTrap(b)
+{
+	this->_gateKeeping = b._gateKeeping;
+	this->_energyPoints = b._energyPoints;
+	this->_attackDamage = b._attackDamage;
+	std::cout << "ScavTrap " << _name << " created" << std::endl;
+}
+
+ScavTrap& ScavTrap::operator=(const ScavTrap& r)
+{
+	if (this == &r)
+		return *this;
+
+	this->_name = r._name;
+	this->_gateKeeping = r._gateKeeping;
+	this->_energyPoints = r._energyPoints;
+	this->_attackDamage = r._attackDamage;
+	std::cout << "ScavTrap " <<  r._name << " assigned to new ScavTrap" << std::endl;
+	return *this;
 }
 
 ScavTrap::~ScavTrap()

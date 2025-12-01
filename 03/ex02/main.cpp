@@ -7,7 +7,10 @@ int main()
 	ScavTrap s("Scavvy");
 	std::cout << std::endl;
 
-	f.highFivesGuys();
+	FragTrap y;
+
+	y = f;
+	y.highFivesGuys();
 	s.guardGate();
 	s.attack(f.getName());
 	f.attack(s.getName());

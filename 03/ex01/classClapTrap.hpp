@@ -18,6 +18,9 @@ class ClapTrap
 		void beRepaired(unsigned int);
 
 		ClapTrap(std::string);
+		ClapTrap();
+		ClapTrap(const ClapTrap&);
+		ClapTrap& operator=(const ClapTrap&);
 		~ClapTrap();
 };
 
