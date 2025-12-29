@@ -28,11 +28,37 @@ void	FragTrap::fstatus()
 
 // ------------- CONSTRUCTOR & DESTRUCTOR -------------
 
-FragTrap::FragTrap(std::string name): ClapTrap(name), _ownEnergyPoints(100), _ownAttackDamage(30)
+FragTrap::FragTrap(std::string name): ClapTrap(name)
 {
-	this->_energyPoints = this->_ownEnergyPoints;
-	this->_attackDamage = this->_ownAttackDamage;
+	this->_energyPoints = 100;
+	this->_attackDamage = 30;
 	std::cout << "FragTrap " << name << " created" << std::endl;
+}
+
+FragTrap::FragTrap(): ClapTrap("Jimmy")
+{
+	this->_energyPoints = 100;
+	this->_attackDamage = 30;
+	std::cout << "Default FragTrap created" << std::endl;
+}
+
+FragTrap::FragTrap(const FragTrap& b): ClapTrap(b)
+{
+	this->_energyPoints = 100;
+	this->_attackDamage = 30;
+	std::cout << "FragTrap " << _name << " created" << std::endl;
+}
+
+FragTrap& FragTrap::operator=(const FragTrap& r)
+{
+	if (this == &r)
+		return *this;
+
+	this->_energyPoints = r._energyPoints;
+	this->_attackDamage = r._attackDamage;
+	std::cout << "FragTrap " <<  r._name << " assigned to new FragTrap" << std::endl;
+
+	return *this;
 }
 
 FragTrap::~FragTrap()

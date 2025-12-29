@@ -12,6 +12,10 @@ class DiamondTrap: public ScavTrap, public FragTrap
 {
 	private:
 		std::string _name;
+
+	protected:
+		int _energyPoints;
+		int _attackDamage;
 	
 	public:
 		void whoAmI();
@@ -20,6 +24,9 @@ class DiamondTrap: public ScavTrap, public FragTrap
 		void status();
 
 		DiamondTrap(std::string);
+		DiamondTrap();
+		DiamondTrap(const DiamondTrap&);
+		DiamondTrap& operator=(const DiamondTrap&);
 		~DiamondTrap();
 };
 

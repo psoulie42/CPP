@@ -41,7 +41,32 @@ void	ClapTrap::beRepaired(unsigned int amount)
 ClapTrap::ClapTrap(std::string name): 
 	_name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0) 
 {
-	std::cout << "ClapTrap " << name << " created" << std::endl;
+	std::cout << "ClapTrap " << _name << " created" << std::endl;
+}
+
+ClapTrap::ClapTrap():
+	_name("anonymous"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+{
+	std::cout << "Default ClapTrap created" << std::endl;
+}
+
+ClapTrap::ClapTrap(const ClapTrap& b): _name("copy of " + b._name), _hitPoints(b._hitPoints),
+	_energyPoints(b._energyPoints), _attackDamage(b._attackDamage)
+{
+	std::cout << "ClapTrap" << _name << "created" << std::endl;
+}
+
+ClapTrap& ClapTrap::operator=(const ClapTrap& r)
+{
+	if (this == &r)
+		return *this;
+	_name = r._name;
+	_hitPoints = r._hitPoints;
+	_energyPoints = r._energyPoints;
+	_attackDamage = r._attackDamage;
+
+	std::cout << _name << " assigned to new ClapTrap" << std::endl;
+	return *this;
 }
 
 ClapTrap::~ClapTrap() 

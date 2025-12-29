@@ -43,18 +43,6 @@ int	plotPoint()
 	}
 }
 
-// ------------- MEMBER FUNCTIONS ------------
-
-void	DiamondTrap::whoAmI()
-{
-	std::cout << this->_name << ":"  << CYAN << BOLD
-		<< " Hello, short one. I am a DiamondTrap, and my name is " << this->_name << "."
-		<< std::endl << "However, I shall always remember where I came from. " << ClapTrap::_name
-		<< " is what they used to call me." << std::endl
-		<< "I will now venture deeper in the mist, to cut down the evil that plagues this land at its source."
-		<< std::endl;
-}
-
 void	DiamondTrap::storyTelling()
 {
 	std::string name;
@@ -93,9 +81,23 @@ void	DiamondTrap::storyTelling()
 	std::cin.ignore();
 	std::cout << CYAN << BOLD << "Well, thank you for helping me save the world " << name << "!" << std::endl
 		<< "Even though the fight itself was... underwhelming, to say the least. " << std::endl
-		<< "Goodbye, and may we meet again my friend!" << RESET << std::endl;
+		<< "Goodbye, and may we meet again my friend!" << RESET;
 	std::cin.ignore();
 	return ;
+}
+
+// ------------- MEMBER FUNCTIONS ------------
+
+void	DiamondTrap::whoAmI()
+{
+	std::cout << this->_name << ":"  << CYAN << BOLD
+		<< " Hello, short one. I am a DiamondTrap, and my name is " 
+		<< RESET << this->_name << CYAN << BOLD << "."
+		<< std::endl << "However, I shall always remember where I came from. " 
+		<< RESET << ClapTrap::_name << CYAN << BOLD
+		<< " is what they used to call me." << std::endl
+		<< "I will now venture deeper in the mist, to cut down the evil that plagues this land at its source."
+		<< std::endl;
 }
 
 void	DiamondTrap::status()
@@ -109,9 +111,40 @@ void	DiamondTrap::status()
 DiamondTrap::DiamondTrap(std::string name):
 	ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name), _name(name)
 {
-	this->_energyPoints = ScavTrap::_ownEnergyPoints;
-	this->_attackDamage = FragTrap::_ownAttackDamage;
+	this->_energyPoints = ScavTrap::_energyPoints;
+	this->_attackDamage = FragTrap::_attackDamage;
 	std::cout << "DiamondTrap " << name << " created" << std::endl;
+}
+
+DiamondTrap::DiamondTrap():
+	ClapTrap("Default_clap_name"), ScavTrap(), FragTrap(), _name("Default")
+{
+	this->_energyPoints = ScavTrap::_energyPoints;
+	this->_attackDamage = ScavTrap::_attackDamage;
+	std::cout << "Default DiamondTrap created" << std::endl;
+}
+
+DiamondTrap::DiamondTrap(const DiamondTrap& b): ClapTrap(b), ScavTrap(b),
+	FragTrap(b), _name("copy of " + b._name)
+{
+	this->_energyPoints = b._energyPoints;
+	this->_attackDamage = b._attackDamage;
+	std::cout << "DiamondTrap " << b._name << " copied" << std::endl;
+}
+
+DiamondTrap& DiamondTrap::operator=(const DiamondTrap& r)
+{
+	if (this == &r)
+		return *this;
+
+	this->_name = r._name;
+	ClapTrap::_name = r.ClapTrap::_name;
+	this->_hitPoints = r._hitPoints;
+	this->_attackDamage = r._attackDamage;
+	this->_energyPoints = r._energyPoints;
+	std::cout << "DiamondTrap " << r._name << " assigned to new DiamondTrap" << std::endl;
+
+	return *this;
 }
 
 DiamondTrap::~DiamondTrap()

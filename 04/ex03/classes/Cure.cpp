@@ -18,7 +18,10 @@ Cure* Cure::clone() const
 
 Cure::Cure(): AMateria("cure") {}
 
-Cure::Cure(const Cure& b): AMateria("cure") {}
+Cure::Cure(const Cure& b): AMateria()
+{
+	type = b.type;
+}
 
 Cure& Cure::operator=(const Cure& b)
 {
@@ -26,3 +29,5 @@ Cure& Cure::operator=(const Cure& b)
 		type = b.type;
 	return *this;
 }
+
+Cure::~Cure() {}

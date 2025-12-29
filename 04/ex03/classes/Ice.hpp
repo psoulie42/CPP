@@ -6,7 +6,7 @@
 #include "AMateria.hpp"
 #include "ICharacter.hpp"
 
-class Ice: public AMateria
+class Ice: virtual public AMateria
 {
 	public:
 		Ice* clone() const;

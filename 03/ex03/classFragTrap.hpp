@@ -6,8 +6,8 @@
 class FragTrap: public virtual ClapTrap
 {
 	protected:
-		int _ownEnergyPoints;
-		int _ownAttackDamage;
+		int _energyPoints;
+		int _attackDamage;
 	
 	public:
 		void highFivesGuys();
@@ -15,6 +15,9 @@ class FragTrap: public virtual ClapTrap
 		void fstatus();
 
 		FragTrap(std::string name);
+		FragTrap();
+		FragTrap(const FragTrap&);
+		FragTrap& operator=(const FragTrap&);
 		~FragTrap();
 };
 

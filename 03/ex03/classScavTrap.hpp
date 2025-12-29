@@ -7,9 +7,12 @@
 
 class ScavTrap : public virtual ClapTrap
 {
+	private:
+		bool _gateKeeping;
+
 	protected:
-		int _ownEnergyPoints;
-		int _ownAttackDamage;
+		int _energyPoints;
+		int _attackDamage;
 	
 	public:
 		void guardGate();
@@ -17,6 +20,9 @@ class ScavTrap : public virtual ClapTrap
 		void sstatus();
 
 		ScavTrap(std::string);
+		ScavTrap();
+		ScavTrap(const ScavTrap&);
+		ScavTrap& operator=(const ScavTrap&);
 		~ScavTrap();
 };
 
