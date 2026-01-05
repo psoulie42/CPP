@@ -3,6 +3,9 @@
 #include <iostream>
 #include <string>
 #include <exception>
+#include <form.hpp>
+
+class Form;
 
 #define LOWEST_GRADE 150
 #define HIGHEST_GRADE 1
@@ -16,6 +19,7 @@ class Bureaucrat
 	public:
 		const std::string getName() const;
 		int getGrade() const;
+		void signForm(Form& form);
 
 		void gradeUp();
 		void gradeDown();

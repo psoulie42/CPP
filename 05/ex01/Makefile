@@ -15,12 +15,14 @@ CLASSES = classes/
 ODIR = ./
 FILES =	$(SRCSDIR)main.cpp \
 		$(CLASSES)bureaucrat.cpp \
+		$(CLASSES)form.cpp \
 
 
 OFILES = $(SRCSDIR)main.o \
 		$(CLASSES)bureaucrat.o \
+		$(CLASSES)form.o \
 
-NAME = bureaucrat
+NAME = form
 
 all: $(NAME)
 

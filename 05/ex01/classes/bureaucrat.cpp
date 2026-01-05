@@ -28,6 +28,19 @@ void Bureaucrat::gradeDown()
 		_grade++;
 }
 
+void Bureaucrat::signForm(Form& form)
+{
+	try
+	{
+		form.beSigned(*this);
+		std::cout << _name << " signed " << form.getName() << std::endl;
+	}
+	catch (const Form::GradeTooLowException& e)
+	{
+		std::cout << _name << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
+	}
+}
+
 // ------------- EXCEPTIONS -------------
 
 const char *Bureaucrat::GradeTooHighException::what() const throw()
@@ -42,15 +55,9 @@ const char *Bureaucrat::GradeTooLowException::what() const throw()
 
 // ------------- CONSTRUCTORS & DESTRUCTORS -------------
 
-Bureaucrat::Bureaucrat(): _name("default"), _grade(LOWEST_GRADE)
-{
-	std::cout << "Bureaucrat " << _name << " successfully created with rank " << _grade << std::endl;
-}
+Bureaucrat::Bureaucrat(): _name("default"), _grade(LOWEST_GRADE) {}
 
-Bureaucrat::Bureaucrat(const std::string& name): _name(name), _grade(LOWEST_GRADE)
-{
-	std::cout << "Bureaucrat " << _name << " successfully created with rank " << _grade << std::endl;
-}
+Bureaucrat::Bureaucrat(const std::string& name): _name(name), _grade(LOWEST_GRADE) {}
 
 Bureaucrat::Bureaucrat(const std::string& name, int grade): _name(name)
 {
@@ -60,19 +67,11 @@ Bureaucrat::Bureaucrat(const std::string& name, int grade): _name(name)
 		throw GradeTooLowException();
 	else
 		_grade = grade;
-
-	std::cout << "Bureaucrat " << _name << " successfully created with rank " << _grade << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& b): _name(b._name), _grade(b._grade)
-{
-	std::cout << "Bureaucrat " << _name << " successfully copied with rank " << _grade << std::endl;
-}
+Bureaucrat::Bureaucrat(const Bureaucrat& b): _name(b._name), _grade(b._grade) {}
 
-Bureaucrat::~Bureaucrat()
-{
-	std::cout << "Bureaucrat " << _name << " was fired." << std::endl;
-}
+Bureaucrat::~Bureaucrat() {}
 
 // -------------- OPERATOR OVERLOADS -------------
 
