@@ -14,13 +14,13 @@ SRCSDIR = ./
 CLASSES = classes/
 ODIR = ./
 FILES =	$(SRCSDIR)main.cpp \
-		$(CLASSES)bureaucrat.cpp \
+		$(CLASSES)converter.cpp \
 
 
 OFILES = $(SRCSDIR)main.o \
-		$(CLASSES)bureaucrat.o \
+		$(CLASSES)converter.o \
 
-NAME = bureaucrat
+NAME = convert
 
 all: $(NAME)
 
@@ -41,6 +41,7 @@ clean:
 fclean: clean
 	@echo "$(RED)$(BOLD)🗑️  Removing executable $(NAME)...$(COLOUR_RESET)"
 	@rm -f $(NAME)
+	@rm -f *_shrubbery
 	@echo "$(GREEN)$(BOLD)✨ All clean! ✨$(COLOUR_RESET)"
 
 party:

@@ -1,0 +1,16 @@
+#include <iostream>
+#include <string>
+#include <limits>
+#include "converter.hpp"
+
+int main(int ac, char **av)
+{
+	if (ac != 2)
+	{
+		std::cout << "Program requires an argument to convert" << std::endl;
+		return 1;
+	}
+
+	ScalarConverter::convert(av[1]);
+	return 0;
+}
