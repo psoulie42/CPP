@@ -14,12 +14,16 @@ class BitcoinExchange
 {
 	private:
 		std::map<string, double> _map;
+		std::map<string, double> _ref;
 
-		void BitcoinExchange::checkLine(string line, struct tm* time, double& value);
-		string BitcoinExchange::getDate(string line);
-		std::map<string, double> parseCSV();
+		void checkLine(string line, struct tm* time, double& value);
+		void checkCSVLine(string line, struct tm* time, double& value);
+
+		void printResult(std::map<string, double>::iterator, std::map<string, double>::iterator);
 
 	public:
+		string getDate(string line);
+		void parseCSV();
 		void parseInput(const string& filename);
 		void processFile();
 

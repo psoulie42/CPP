@@ -12,11 +12,14 @@ int main(int ac, char** av)
 	{
 		BitcoinExchange btc;
 		btc.parseInput(av[1]);
+		btc.parseCSV();
+		btc.processFile();
 	}
 	catch (std::exception& e)
 	{
 		std::cerr << e.what() << endl;
+		return 1;
 	}
 
-	string csv = copyCSV();
+	return 0;
 }

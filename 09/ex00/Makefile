@@ -14,13 +14,13 @@ SRCSDIR = ./
 CLASSES = classes/
 ODIR = ./
 FILES =	$(SRCSDIR)main.cpp \
-		$(SRCSDIR)utils.cpp \
+		$(CLASSES)BitcoinExchange.cpp \
 
 
 OFILES = $(SRCSDIR)main.o \
-		 $(SRCSDIR)utils.cpp \
+		 $(CLASSES)BitcoinExchange.o \
 
-NAME = RPN
+NAME = btc
 
 all: $(NAME)
 
