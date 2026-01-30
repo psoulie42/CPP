@@ -20,6 +20,7 @@ class BitcoinExchange
 		void checkCSVLine(string line, struct tm* time, double& value);
 
 		void printResult(std::map<string, double>::iterator, std::map<string, double>::iterator);
+		void printError(std::map<string, double>::iterator);
 
 	public:
 		string getDate(string line);

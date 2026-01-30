@@ -7,10 +7,11 @@ int main(int ac, char** av)
 		std::cerr << "Error: This program needs an input file as argument to run!" << endl;
 		return 1;
 	}
+	
+	BitcoinExchange btc;
 
 	try
 	{
-		BitcoinExchange btc;
 		btc.parseInput(av[1]);
 		btc.parseCSV();
 		btc.processFile();
