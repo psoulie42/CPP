@@ -181,7 +181,7 @@ void BitcoinExchange::checkLine(string line, double& value)
 	// checking if the format of a line corresponds to:
 	// YYYY-MM-DD | value
 	bool dot = false;
-	if (line.size() < 12)
+	if (line.size() < 14)
 		throw std::invalid_argument("Line too short");
 
 	for (int i = 0; line[i]; i++)
@@ -200,6 +200,8 @@ void BitcoinExchange::checkLine(string line, double& value)
 			throw std::invalid_argument("Invalid line format");
 
 		// check if the value actually is a number
+		else if (i == 13 && !isdigit(line[i]))
+			throw std::invalid_argument("Value must be a positive float or int");
 		else if (i > 12 && dot && !isdigit(line[i]))
 			throw std::invalid_argument("Value must be a positive float or int");
 		else if (i > 12 && !isdigit(line[i]) && line[i] != '.')
