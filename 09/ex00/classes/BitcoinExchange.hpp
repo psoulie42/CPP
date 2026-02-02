@@ -16,8 +16,8 @@ class BitcoinExchange
 		std::map<string, double> _map;
 		std::map<string, double> _ref;
 
-		void checkLine(string line, struct tm* time, double& value);
-		void checkCSVLine(string line, struct tm* time, double& value);
+		void checkLine(string line, double& value);
+		void checkCSVLine(string line, double& value);
 
 		void printResult(std::map<string, double>::iterator, std::map<string, double>::iterator);
 		void printError(std::map<string, double>::iterator);

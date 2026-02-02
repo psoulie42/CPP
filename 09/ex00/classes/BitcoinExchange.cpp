@@ -12,11 +12,13 @@ void BitcoinExchange::processFile()
 	while (it != _map.end())
 	{
 		it2 = _ref.begin();
-		while (it2 != _ref.end() && it2->first < it->first)
+		while (it2 != _ref.end() && getDate(it->first) >= getDate(it2->first))
 			it2++;
 
 		if (it->second == -1)
 			printError(it);
+		else if (it2 != _ref.begin())
+			printResult(it, --it2);
 		else
 			printResult(it, it2);
 
@@ -26,16 +28,15 @@ void BitcoinExchange::processFile()
 
 void BitcoinExchange::printError(std::map<string, double>::iterator it)
 {
-	std::tm time;
 	double val;
 
 	try
 	{
-		checkLine(it->first, &time, val);
+		checkLine(it->first, val);
 	}
 	catch (std::exception& e)
 	{
-		cout << e.what() << endl;
+		cout << it->first << ": " << e.what() << endl;
 	}
 }
 
@@ -54,20 +55,19 @@ void BitcoinExchange::parseCSV()
 
 	// parsing file
 	string line;
-	std::tm time;
 	double value = 0;
 
 	getline(file, line);
 
 	if (line != "date,exchange_rate")
 	{
-		checkCSVLine(line, &time, value);
+		checkCSVLine(line, value);
 		_ref.insert(std::pair<string, double>(line, value));
 	}
 
 	while (getline(file, line))
 	{
-		checkCSVLine(line, &time, value);
+		checkCSVLine(line, value);
 		_ref.insert(std::pair<string, double>(line, value));
 	}
 }
@@ -81,7 +81,6 @@ void BitcoinExchange::parseInput(const string& filename)
 
 	// parsing file
 	string line;
-	std::tm time;
 	double value = 0;
 
 	getline(file, line);
@@ -90,7 +89,7 @@ void BitcoinExchange::parseInput(const string& filename)
 	{
 		try
 		{
-			checkLine(line, &time, value);
+			checkLine(line, value);
 		}
 		catch(const std::exception& e)
 		{
@@ -104,7 +103,7 @@ void BitcoinExchange::parseInput(const string& filename)
 	{
 		try
 		{
-			checkLine(line, &time, value);
+			checkLine(line, value);
 		}
 		catch(const std::exception& e)
 		{
@@ -115,7 +114,7 @@ void BitcoinExchange::parseInput(const string& filename)
 	}
 }
 
-void BitcoinExchange::checkCSVLine(string line, std::tm* time, double& value)
+void BitcoinExchange::checkCSVLine(string line, double& value)
 {
 
 	// checking if the format of a line corresponds to:
@@ -149,20 +148,23 @@ void BitcoinExchange::checkCSVLine(string line, std::tm* time, double& value)
 	}
 	
 	// checking and assigning date
-	char year[4], month[2], day[2];
+	char year[5], month[3], day[3];
 
 	line.copy(year, 4, 0);
 	line.copy(month, 2, 5);
-	line.copy(day, 2, 7);
+	line.copy(day, 2, 8);
 
-	time->tm_year = std::strtod(year, NULL);
-	time->tm_mon = std::strtod(month, NULL) - 1;
-	time->tm_mday = std::strtod(day, NULL);
+	std::tm time1 = {};
 
-	if (time->tm_year < 2009 ||
-		time->tm_year != std::strtod(year, NULL) ||
-		time->tm_mon != std::strtod(month, NULL) - 1 ||
-		time->tm_mday != std::strtod(day, NULL))
+	time1.tm_year = std::strtod(year, NULL) - 1900;
+	time1.tm_mon = std::strtod(month, NULL) - 1;
+	time1.tm_mday = std::strtod(day, NULL);
+
+	std::tm time2 = time1;
+	std::mktime(&time2);
+	if (time1.tm_year != time2.tm_year ||
+		time1.tm_mon != time2.tm_mon ||
+		time1.tm_mday != time2.tm_mday)
 	{
 		throw std::invalid_argument("Error: Invalid date! (CSV)");	
 	}
@@ -172,29 +174,30 @@ void BitcoinExchange::checkCSVLine(string line, std::tm* time, double& value)
 	line.copy(val, 10, 11);
 
 	value = std::strtod(val, NULL);
-	if (value > 1000)
-		throw BitcoinExchange::InvalidFormatException();	
 }
 
-void BitcoinExchange::checkLine(string line, std::tm* time, double& value)
+void BitcoinExchange::checkLine(string line, double& value)
 {
 	// checking if the format of a line corresponds to:
 	// YYYY-MM-DD | value
 	bool dot = false;
+	if (line.size() < 12)
+		throw std::invalid_argument("Line too short");
+
 	for (int i = 0; line[i]; i++)
 	{
 		// check if the date has the correct format
 		if (i == 4 || i == 7)
 		{
 			if (line[i] != '-')
-				throw std::invalid_argument("Bad date format: -");
+				throw std::invalid_argument("Invalid date format: -");
 		}
 		else if (i < 10 && !isdigit(line[i]))
-			throw std::invalid_argument("Bad date format: digits");
+			throw std::invalid_argument("Invalid date format: digits");
 		
 		// check if there's a separation in the right place
 		else if (i == 10 && (line[i] != ' ' || line[i + 1] != '|' || line[i + 2] != ' '))
-			throw std::invalid_argument("Bad line format");
+			throw std::invalid_argument("Invalid line format");
 
 		// check if the value actually is a number
 		else if (i > 12 && dot && !isdigit(line[i]))
@@ -224,7 +227,7 @@ void BitcoinExchange::checkLine(string line, std::tm* time, double& value)
 		time1.tm_mon != time2.tm_mon ||
 		time1.tm_mday != time2.tm_mday)
 	{
-		throw BitcoinExchange::InvalidFormatException();
+		throw std::invalid_argument("Date doesn't exist");
 	}
 
 	// checking and assigning value
@@ -233,7 +236,7 @@ void BitcoinExchange::checkLine(string line, std::tm* time, double& value)
 
 	value = std::strtod(val, NULL);
 	if (value > 1000)
-		throw BitcoinExchange::InvalidFormatException();	
+		throw std::invalid_argument("Value can't be > 1000");	
 }
 
 string BitcoinExchange::getDate(string line)
