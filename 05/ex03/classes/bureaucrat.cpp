@@ -85,7 +85,10 @@ Bureaucrat::Bureaucrat(const std::string& name, int grade): _name(name)
 
 Bureaucrat::Bureaucrat(const Bureaucrat& b): _name(b._name), _grade(b._grade) {}
 
-Bureaucrat::~Bureaucrat() {}
+Bureaucrat::~Bureaucrat()
+{
+	std::cout << _name << " was fired." << std::endl;
+}
 
 // -------------- OPERATOR OVERLOADS -------------
 

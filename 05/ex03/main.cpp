@@ -14,7 +14,6 @@ int main()
 {
 	srand(time(0)); // setting the seed for rand(), needed for Robotomy Requests
 
-	Bureaucrat boss("Boss", 1);
 	Bureaucrat joe("joe", 137);
 	Intern dude;
 	AForm *form;
@@ -43,7 +42,7 @@ int main()
 
 	joe.signForm(*form);
 	joe.executeForm(*form);
-	std::cout << "WELL DONE JOE! *CROWD APPLAUSE*" << std::endl;
+	std::cout << "WELL DONE JOE! We'll miss you :\')" << std::endl << std::endl;
 
 	delete form;
 	return (0);
