@@ -44,25 +44,25 @@ void	ScalarConverter::convert(const std::string& n)
 	
 	switch (inputType(n))
 	{
-		case 0:
+		case CHAR:
 			charVal = n[0];
 			intVal = static_cast<int>(charVal);
 			floatVal = static_cast<float>(charVal);
 			doubleVal = static_cast<double>(charVal);
 			break;
-		case 1:
+		case INT:
 			intVal = std::strtol(n.c_str(), NULL, 10);
 			charVal = static_cast<char>(intVal);
 			floatVal = static_cast<float>(intVal);
 			doubleVal = static_cast<double>(intVal);
 			break;
-		case 2:
+		case FLOAT:
 			floatVal = std::strtof(n.c_str(), NULL);
 			charVal = static_cast<char>(floatVal);
 			intVal = static_cast<int>(floatVal);
 			doubleVal = static_cast<double>(floatVal);
 			break;
-		case 3:
+		case DOUBLE:
 			doubleVal = std::strtod(n.c_str(), NULL);
 			charVal = static_cast<char>(doubleVal);
 			intVal = static_cast<int>(doubleVal);

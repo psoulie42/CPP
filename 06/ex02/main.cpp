@@ -14,10 +14,13 @@ Base* generate()
 	switch (type)
 	{
 		case 0:
+			std::cout << "Type is A" << std::endl;
 			return new A;
 		case 1:
+			std::cout << "Type is B" << std::endl;
 			return new B;
 		case 2:
+			std::cout << "Type is C" << std::endl;
 			return new C;
 
 		default:
