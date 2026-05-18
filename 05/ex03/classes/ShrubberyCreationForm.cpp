@@ -5,7 +5,7 @@
 void SCF::_performAction() const
 {
 	std::ofstream fout;
-	fout.open(_target + "_shrubbery", std::ios::out);
+	fout.open((_target + "_shrubbery").c_str(), std::ios::out);
 
 	fout << std::endl;
     fout << "                 .o00o				      '.o00o			" << std::endl;

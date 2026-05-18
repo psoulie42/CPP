@@ -2,10 +2,12 @@
 #include <string>
 #include "class.Harl.hpp"
 
-int	main()
+int	main(int ac, char **av)
 {
+	if (ac != 2)
+		return 1;
+
 	Harl harl;
 
-	harl.complain("DEBUG");
-	harl.complain("hello");
+	harl.complain(av[1]);
 }

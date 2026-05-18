@@ -9,18 +9,16 @@ COLOUR_RESET = \033[0m
 REPLACE = \033[1A\033[K\033[A
 
 CC = c++
-CFLAGS = -Wall -Wextra -std=c++98
+CFLAGS = -Wall -Wextra -std=c++98 -g
 SRCSDIR = ./
 ODIR = ./
 FILES =	$(SRCSDIR)main.cpp \
-		$(SRCSDIR)Contact.class.cpp \
-		$(SRCSDIR)PhoneBook.class.cpp \
-		$(SRCSDIR)Contact.class.hpp \
-		$(SRCSDIR)PhoneBook.class.hpp
+		$(SRCSDIR)classContact.cpp \
+		$(SRCSDIR)classPhoneBook.cpp \
 
 OFILES = $(SRCSDIR)main.o \
-		 $(SRCSDIR)Contact.class.o \
-		 $(SRCSDIR)PhoneBook.class.o \
+		$(SRCSDIR)classContact.o \
+		$(SRCSDIR)classPhoneBook.o \
 
 NAME = phonebook
 

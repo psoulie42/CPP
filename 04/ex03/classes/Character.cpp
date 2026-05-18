@@ -32,7 +32,11 @@ void Character::use(int i, ICharacter& target)
 	if (i >= 0 && i < INV_SIZE && inventory[i])
 	{
 		inventory[i]->use(target);
+		inventory[i] = NULL;
 	}
+	else if (!inventory[i])
+		std::cout << "There is no Materia in spot " << i << " of " << name << "'s inventory"
+			<< std::endl;
 }
 
 AMateria* Character::getMateria(int i) const

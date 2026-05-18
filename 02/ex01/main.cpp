@@ -10,7 +10,7 @@ int main( void )
 	a = Fixed( 1234.4321f );
 	std::cout << std::endl;
 
-	std::cout << "------------ TESTING OPERATOR << ------------\n" << std::endl;
+	std::cout << "------------ TESTING OPERATOR << && toFloat() ------------\n" << std::endl;
 	std::cout << "a is " << a << std::endl;
 	std::cout << "b is " << b << std::endl;
 	std::cout << "c is " << c << std::endl;

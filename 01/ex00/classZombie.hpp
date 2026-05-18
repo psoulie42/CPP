@@ -12,6 +12,9 @@ class Zombie
 		void	announce(void);
 
 		Zombie(std::string name);
+		Zombie();
+		Zombie(const Zombie&);
+		Zombie operator=(const Zombie&);
 		~Zombie();
 };
 

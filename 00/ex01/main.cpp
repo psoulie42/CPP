@@ -1,4 +1,4 @@
-#include "PhoneBook.class.hpp"
+#include "classPhoneBook.hpp"
 
 int main()
 {
@@ -10,7 +10,7 @@ int main()
 	while (true)
 	{
 		pb.displayPrompt();
-		std::cin >> input;
+		std::getline(std::cin, input);
 		if (input == "ADD")
 		{
 			if (pb.addContact(index))

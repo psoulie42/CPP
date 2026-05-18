@@ -13,11 +13,11 @@ CFLAGS = -Wall -Wextra -std=c++98
 SRCSDIR = ./
 ODIR = ./
 FILES =	$(SRCSDIR)main.cpp \
-		$(SRCSDIR)class.Harl.cpp \
+		$(SRCSDIR)classHarl.cpp \
 
 
 OFILES = $(SRCSDIR)main.o \
-		$(SRCSDIR)class.Harl.o \
+		$(SRCSDIR)classHarl.o \
 
 NAME = harl
 

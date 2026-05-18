@@ -30,12 +30,12 @@ $(NAME): megaphone.o
 
 clean:
 	@echo "$(RED)$(BOLD)🧹 Removing object files...$(COLOUR_RESET)"
-	rm -f $(OFILE)
+	@rm -f $(OFILE)
 	@echo "$(GREEN)$(BOLD)✔️ Object files removed!$(COLOUR_RESET)"
 
 fclean: clean
 	@echo "$(RED)$(BOLD)🗑️  Removing executable $(NAME)...$(COLOUR_RESET)"
-	rm -f $(NAME)
+	@rm -f $(NAME)
 	@echo "$(GREEN)$(BOLD)✨ All clean! ✨$(COLOUR_RESET)"
 
 party:

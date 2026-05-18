@@ -4,32 +4,28 @@ int	getN(void)
 {
 	int	n;
 
+	std::cout 
+		<< "How many zombies do you want?" << std::endl;
 	while (true)
 	{
-		std::cout 
-			<< "How many zombies do you want?" << std::endl;
 		std::cin >> n;
-		if (std::cin.fail())
+		if (std::cin.eof())
+			return -1;
+		if (!std::cin)
 		{
-			std::cout << "Please insert number." << std::endl;
 			std::cin.clear();
-			std::cin.ignore();
+			std::cin.ignore(10000, '\n');
+			std::cout << "Please insert number: ";
 			continue;
 		}
 		else
+		{
+			std::cin.clear();
+			std::cin.ignore();
 			break;
+		}
 	}
 	return (n);
-}
-
-std::string getName(void)
-{
-	std::string name;
-
-	std::cout 
-		<< "What do we call the zombies?" << std::endl;
-	std::cin >> name;
-	return name;
 }
 
 int	main()
@@ -39,7 +35,12 @@ int	main()
 	std::string	name;
 
 	n = getN();
-	name = getName();
+	if (n == -1)
+		return 1;
+	std::cout
+		<< "What do we call the zombies?" << std::endl;
+	if (!std::getline(std::cin, name))
+		return 1;
 	horde = zombieHorde(n, name);
 	for (int i = 0; i < n; i++)
 		horde[i].announce();

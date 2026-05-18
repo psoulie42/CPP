@@ -13,15 +13,15 @@ CFLAGS = -Wall -Wextra -std=c++98
 SRCSDIR = ./
 ODIR = ./
 FILES =	$(SRCSDIR)main.cpp \
-		$(SRCSDIR)class.Weapon.cpp \
-		$(SRCSDIR)class.HumanA.cpp \
-		$(SRCSDIR)class.HumanB.cpp \
+		$(SRCSDIR)classWeapon.cpp \
+		$(SRCSDIR)classHumanA.cpp \
+		$(SRCSDIR)classHumanB.cpp \
 
 
 OFILES = $(SRCSDIR)main.o \
-		$(SRCSDIR)class.Weapon.o \
-		$(SRCSDIR)class.HumanA.o \
-		$(SRCSDIR)class.HumanB.o \
+		$(SRCSDIR)classWeapon.o \
+		$(SRCSDIR)classHumanA.o \
+		$(SRCSDIR)classHumanB.o \
 
 NAME = violence
 
