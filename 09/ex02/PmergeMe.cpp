@@ -40,19 +40,19 @@ void PmergeMe::startMergeVec(char **av)
 		av++;
 	}
 
-	cout << endl << "Running ford-johnson with vector" << endl;/* 
+	cout << endl << "Running ford-johnson with vector" << endl;
 	cout << "Initial sequence: ";
 	for (size_t i = 0; i < _vec.size(); i++)
 		cout << _vec[i].first << ' ';
-	cout << endl; */
+	cout << endl;
 
 	_start = (std::clock());
 	sort(_vec);
 	cout << "Merge done with vector:" << endl;
-	cout << "Sorted sequence: ";/* 
+	cout << "Sorted sequence: ";
 	for (size_t i = 0; i < _vec.size(); i++)
 		cout << _vec[i].first << ' ';
-	cout << endl; */
+	cout << endl;
 
 	int n = _vec.size();
 	if (isSorted())

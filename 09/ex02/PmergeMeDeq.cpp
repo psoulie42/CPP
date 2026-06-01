@@ -10,19 +10,19 @@ void PmergeMe::startMergeDeq(char **av)
 		av++;
 	}
 
-	cout << endl << "Running ford-johnson with deque" << endl;/* 
+	cout << endl << "Running ford-johnson with deque" << endl;
 	cout << "Initial sequence: ";
 	for (size_t i = 0; i < _deq.size(); i++)
 		cout << _deq[i].first << ' ';
-	cout << endl; */
+	cout << endl;
 
 	_start = (std::clock());
 	sort(_deq);
-	cout << "Merge done with deque:" << endl;/* 
+	cout << "Merge done with deque:" << endl;
 	cout << "Sorted sequence: ";
 	for (size_t i = 0; i < _deq.size(); i++)
 		cout << _deq[i].first << ' ';
-	cout << endl; */
+	cout << endl;
 
 	int n = _deq.size();
 	if (isSorted())
