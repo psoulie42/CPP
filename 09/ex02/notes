@@ -1,0 +1,15 @@
+function to check if my numbers are already sorted
+check time efficiency between deque and vector
+function to check comparisons
+template for deque + vector?
+use binary search
+jacobsthal suite: a * 2 + b = next
+
+put pairs together, put bigger number on the right
+put pairs of pairs, put pair with biggest bigger number on the right, until you cant make equal size pairs
+name them b1(little) & a1(big), a2 & b2 etc
+put all bs in seperate queue and insert them in list, considering their pairs position, via binary search
+then, go to bs next jacobstahl index and go back down to the previous one
+count every comparison between the individual numbers
+
+4 3 19 0 8 12 5 17 1 9 6 20 11 4 16 2 18 13 10 7 15
