@@ -11,7 +11,7 @@ static Type inputType(const std::string& n)
 	
 	// check for int
 	char* end;
-	long val = std::strtol(n.c_str(), &end, 10);
+	long val = strtol(n.c_str(), &end, 10);
 	if (*end == 0)
 	{
 		if (val < std::numeric_limits<int>::min() || val > std::numeric_limits<int>::max())
@@ -21,12 +21,12 @@ static Type inputType(const std::string& n)
 	}
 
 	// check for float
-	std::strtof(n.c_str(), &end);
+	strtof(n.c_str(), &end);
 	if (*end == 'f')
 		return FLOAT;
 	
 	// check for double
-	std::strtod(n.c_str(), &end);
+	strtod(n.c_str(), &end);
 	if (*end == 0)
 		return DOUBLE;
 	
@@ -51,19 +51,19 @@ void	ScalarConverter::convert(const std::string& n)
 			doubleVal = static_cast<double>(charVal);
 			break;
 		case INT:
-			intVal = std::strtol(n.c_str(), NULL, 10);
+			intVal = strtol(n.c_str(), NULL, 10);
 			charVal = static_cast<char>(intVal);
 			floatVal = static_cast<float>(intVal);
 			doubleVal = static_cast<double>(intVal);
 			break;
 		case FLOAT:
-			floatVal = std::strtof(n.c_str(), NULL);
+			floatVal = strtof(n.c_str(), NULL);
 			charVal = static_cast<char>(floatVal);
 			intVal = static_cast<int>(floatVal);
 			doubleVal = static_cast<double>(floatVal);
 			break;
 		case DOUBLE:
-			doubleVal = std::strtod(n.c_str(), NULL);
+			doubleVal = strtod(n.c_str(), NULL);
 			charVal = static_cast<char>(doubleVal);
 			intVal = static_cast<int>(doubleVal);
 			floatVal = static_cast<float>(doubleVal);
