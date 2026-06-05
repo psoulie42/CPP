@@ -7,12 +7,13 @@ class Array
 {
 	private:
 		T* _array;
-		unsigned int _size;
+		size_t _size;
 
 	public:
-		unsigned int size();
+		size_t size() const;
 
 		T& operator[](int index) const;
+		T& operator[](int index);
 
 		Array();
 		Array(unsigned int size);

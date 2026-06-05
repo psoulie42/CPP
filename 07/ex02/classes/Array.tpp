@@ -5,7 +5,7 @@
 // ------------- ARRAY MEMBER FUNCTIONS -------------
 
 template <typename T>
-unsigned int Array<T>::size()
+size_t Array<T>::size() const
 {
 	return _size;
 }
@@ -29,6 +29,14 @@ T& Array<T>::operator[](int index) const
 }
 
 template <typename T>
+T& Array<T>::operator[](int index)
+{
+	if (static_cast<const unsigned int>(index) >= _size || index < 0)
+		throw OutOfBoundsException();
+	return _array[index];
+}
+
+template <typename T>
 Array<T>& Array<T>::operator=(const Array& r)
 {
 	if (this == &r)
@@ -37,7 +45,7 @@ Array<T>& Array<T>::operator=(const Array& r)
 
 	_array = new T[r._size];
 	
-	for (int i = 0; i < r._size; i++)
+	for (size_t i = 0; i < r._size; i++)
 		_array[i] = r._array[i];
 	_size = r._size;
 
@@ -70,5 +78,5 @@ Array<T>::Array(const Array& b): _size(b._size)
 template <typename T>
 Array<T>::~Array()
 {
-	delete [] _array;
+	delete[] _array;
 }

@@ -9,7 +9,7 @@ COLOUR_RESET = \033[0m
 REPLACE = \033[1A\033[K\033[A
 
 CC = c++
-CFLAGS = -Wall -Wextra -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 SRCSDIR = ./
 CLASSES = classes/
 ODIR = ./
