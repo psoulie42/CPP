@@ -3,26 +3,12 @@
 #include <vector>
 #include <deque>
 
-using std::cout;
-using std::endl;
-using std::vector;
-using std::deque;
-
-template <typename T>
-static void displayContainer(T& container)
-{
-	cout << "{";
-	for (unsigned int i = 0; i < container.size(); i++)
-		cout << " " << container[i];
-	cout << " }" << endl;
-}
-
 int main()
 {
-	vector<int> v(5);
-	vector<int>::iterator vit;
-	deque<int> d(5);
-	deque<int>::iterator dit;
+	std::vector<int> v(5);
+	std::vector<int>::iterator vit;
+	std::deque<int> d(5);
+	std::deque<int>::iterator dit;
 
 	for (unsigned int i = 0; i < v.size(); i++)
 	{
@@ -30,66 +16,66 @@ int main()
 		d[i] = i;
 	}
 
-	cout << "Vector: ";
+	std::cout << "std::vector: ";
 	displayContainer(v);
-	cout << "Deque: ";
+	std::cout << "std::deque: ";
 	displayContainer(d);
-	cout << endl << "Use easyfind to search a 3:" << endl;
+	std::cout << std::endl << "Use easyfind to search a 3:" << std::endl;
 
 	try
 	{
-		cout << "Try in vector: ";
-		vit = easyfind<vector<int> >(v, 3);
-		cout << "Found!" << endl;
+		std::cout << "Try in std::vector: ";
+		vit = easyfind<std::vector<int> >(v, 3);
+		std::cout << "Found!" << std::endl;
 	}
 	catch (std::exception& e)
 	{
-		cout << e .what()<< endl;
+		std::cout << e.what()<< std::endl;
 		return (1);
 	}
 
 	try
 	{
-		cout << "Try in deque: ";
-		dit = easyfind<deque<int> >(d, 3);
-		cout << "Found!" << endl;
+		std::cout << "Try in std::deque: ";
+		dit = easyfind<std::deque<int> >(d, 3);
+		std::cout << "Found!" << std::endl;
 	}
 	catch (std::exception& e)
 	{
-		cout << e .what()<< endl;
+		std::cout << e .what()<< std::endl;
 		return (1);
 	}
 
-	cout << "Replace the 3 with a 42 in the vector using the iterator:" << endl;
+	std::cout << "Replace the 3 with a 42 in the std::vector using the iterator:" << std::endl;
 	*vit = 42;
 	*dit = 42;
-	cout << "New vector: ";
+	std::cout << "New std::vector: ";
 	displayContainer(v);
-	cout << "New deque: ";
+	std::cout << "New std::deque: ";
 	displayContainer(d);
-	cout << endl;
+	std::cout << std::endl;
 
-	cout << "Use easyfind to search a 400:" << endl;
+	std::cout << "Use easyfind to search a 400:" << std::endl;
 	try
 	{
-		cout << "Try in vector: ";
-		easyfind<vector<int> >(v, 3);
-		cout << "Found!" << endl;
+		std::cout << "Try in std::vector: ";
+		easyfind<std::vector<int> >(v, 3);
+		std::cout << "Found!" << std::endl;
 	}
 	catch (std::exception& e)
 	{
-		cout << e.what() << endl;
+		std::cout << e.what() << std::endl;
 	}
 
 	try
 	{
-		cout << "Try in deque: ";
-		easyfind<deque<int> >(d, 3);
-		cout << "Found!" << endl;
+		std::cout << "Try in std::deque: ";
+		easyfind<std::deque<int> >(d, 3);
+		std::cout << "Found!" << std::endl;
 	}
 	catch (std::exception& e)
 	{
-		cout << e.what() << endl;
+		std::cout << e.what() << std::endl;
 	}
 
 	return (0);
