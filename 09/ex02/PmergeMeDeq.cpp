@@ -27,7 +27,7 @@ void PmergeMe::startMergeDeq(char **av)
 	int n = _deq.size();
 	if (isSorted())
 		cout << "Sequence is sorted correctly! " << _comps << " comparisons made." << endl
-			<< "Optimal number of comparisons: " << static_cast<int>(n * std::log2(n) - 1.415 * n) << endl
+			<< "Theoretical best worst case: " << static_cast<int>(n * std::log2(n) - 1.415 * n) << endl
 			<< "Time taken with deque: " << std::clock() - _start / CLOCKS_PER_SEC << "µs." << endl;
 	else
 		cout << "Merge failed at some point :(" << endl;
