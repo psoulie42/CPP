@@ -15,8 +15,8 @@ unsigned int Span::longestSpan()
 	if (_data.size() < 2)
 		throw NotEnoughNumbersException();
 
-	int lil;
-	int big;
+	int lil = _data[0];
+	int big = _data[0];
 
 	for (size_t i = 0; i < _data.size(); i++)
 	{
@@ -26,6 +26,7 @@ unsigned int Span::longestSpan()
 			big = _data[i];
 	}
 
+	std::cout << big << " " << lil << std::endl;
 	return (big - lil);
 }
 

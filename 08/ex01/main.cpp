@@ -2,6 +2,8 @@
 
 int    main()
 {
+    std::srand(std::time(0)); // setting seed for random numbers
+
     std::cout << "Given tests:" << std::endl;
     try
     {
@@ -16,11 +18,11 @@ int    main()
     }
     catch (std::exception & e)
     {
-        std::cerr << "Exception : " << e.what() << std::endl;
+        std::cerr << e.what() << std::endl;
     }
 
     std::cout << std::endl;
-    std::cout << ":boom: Span plein :boom:" << std::endl;
+    std::cout << "Full span:" << std::endl;
     try
     {
         Span    sp(3);
@@ -31,11 +33,11 @@ int    main()
     }
     catch (std::exception & e)
     {
-        std::cerr << "Exception : " << e.what() << std::endl;
+        std::cerr << e.what() << std::endl;
     }
 
     std::cout << std::endl;
-    std::cout << ":boom: moins de 2 nombres :boom:" << std::endl;
+    std::cout << "Span too small: " << std::endl;
     try
     {
         Span    sp(5);
@@ -44,18 +46,18 @@ int    main()
     }
     catch (std::exception & e)
     {
-        std::cerr << "Exception : " << e.what() << std::endl;
+        std::cerr << e.what() << std::endl;
     }
 
     std::cout << std::endl;
-    std::cout << ":boom: addRange avec 10 000 nombres :boom:" << std::endl;
-	    
+    std::cout << "10001 value span added with addRange: " << std::endl;
+
 	try
     {
-        Span            sp(10000);
+        Span            sp(10001);
         std::vector<int>    big;
 
-        for (int i = 0; i < 10000; i++)
+        for (int i = 0; i < 10001; i++)
             big.push_back(std::rand() % 100000);
         sp.addRange(big.begin(), big.end());
         std::cout << "size        = " << big.size() << std::endl;
@@ -64,11 +66,11 @@ int    main()
     }
     catch (std::exception & e)
     {
-        std::cerr << "Exception : " << e.what() << std::endl;
+        std::cerr << e.what() << std::endl;
     }
 
     std::cout << std::endl;
-    std::cout << "💥 addRange dépassement capacité 💥" << std::endl;
+    std::cout << "addRange but Span is too small:" << std::endl;
     try
     {
         Span            sp(5);
@@ -80,7 +82,7 @@ int    main()
     }
     catch (std::exception & e)
     {
-        std::cerr << "Exception : " << e.what() << std::endl;
+        std::cerr << e.what() << std::endl;
     }
 
     return (0);
