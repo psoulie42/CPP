@@ -22,7 +22,7 @@ MutantStack<T>::MutantStack() {}
 
 
 template <typename T>
-MutantStack<T>::MutantStack(const MutantStack& b): stack<T>(b) {}
+MutantStack<T>::MutantStack(const MutantStack& b): std::stack<T>(b) {}
 
 
 template <typename T>
@@ -31,7 +31,7 @@ MutantStack<T>& MutantStack<T>::operator=(const MutantStack& r)
 	if (this == &r)
 		return *this;
 
-	stack<T>::operator=(r);
+	std::stack<T>::operator=(r);
 	return *this;
 }
 

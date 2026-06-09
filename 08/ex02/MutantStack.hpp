@@ -2,10 +2,8 @@
 
 #include <stack>
 
-using std::stack;
-
 template <typename T>
-class MutantStack: public stack<T> 
+class MutantStack: public std::stack<T> 
 {
 	public:
 		typedef typename std::stack<T>::container_type::iterator iterator;

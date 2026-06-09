@@ -26,7 +26,6 @@ unsigned int Span::longestSpan()
 			big = _data[i];
 	}
 
-	std::cout << big << " " << lil << std::endl;
 	return (big - lil);
 }
 
@@ -57,7 +56,7 @@ const char* Span::NotEnoughNumbersException::what() const throw()
 
 const char* Span::ContainerFullException::what() const throw()
 {
-	return ("Can't add more numbers: container is already full!");
+	return ("Container is too small!");
 }
 
 // ------------- CONSTRUCTORS & DESTRUCTORS -------------
