@@ -33,34 +33,33 @@ bool PmergeMe::comp(int a, int b)
 void PmergeMe::startMergeVec(char **av)
 {
 	int i = 0;
+	_start = (std::clock());
+
 	av++;
 	while (*av)
 	{
-		_vec.push_back(pair<int, int>(std::strtol(*av, NULL, 10), i++));
+		_vec.push_back(std::pair<int, int>(std::strtol(*av, NULL, 10), i++));
 		av++;
 	}
 
-	cout << endl << "Running ford-johnson with vector" << endl;
-	cout << "Initial sequence: ";
+	std::cout << std::endl << "Running ford-johnson with vector" << std::endl;
+	std::cout << "Initial sequence: ";
 	for (size_t i = 0; i < _vec.size(); i++)
-		cout << _vec[i].first << ' ';
-	cout << endl;
+		std::cout << _vec[i].first << ' ';
+	std::cout << std::endl;
 
-	_start = (std::clock());
 	sort(_vec);
-	cout << "Merge done with vector:" << endl;
-	cout << "Sorted sequence: ";
+	std::cout << "Merge done with vector:" << std::endl;
+	std::cout << "Sorted sequence: ";
 	for (size_t i = 0; i < _vec.size(); i++)
-		cout << _vec[i].first << ' ';
-	cout << endl;
+		std::cout << _vec[i].first << ' ';
+	std::cout << std::endl;
 
-	int n = _vec.size();
 	if (isSorted())
-		cout << "Sequence is sorted correctly! " << _comps << " comparisons made." << endl
-			<< "Theoretical best worst case: " << static_cast<int>(n * std::log2(n) - 1.415 * n) << endl
-			<< "Time taken with vector: " << std::clock() - _start / CLOCKS_PER_SEC << "µs." << endl;
+		std::cout << "Sequence is sorted correctly! " << _comps << " comparisons made." << std::endl
+			<< "Time taken with vector: " << std::clock() - _start / CLOCKS_PER_SEC << "µs." << std::endl;
 	else
-		cout << "Merge failed at some point :(" << endl;
+		std::cerr << "Merge failed at some point :(" << std::endl;
 	_comps = 0;
 }
 
@@ -73,7 +72,7 @@ int PmergeMe::jacob(int a, int b)
 	return (2 * a + b);
 }
 
-int PmergeMe::dichotomix(int smol, vector<pair<int, int> >& nsort, int i)
+int PmergeMe::dichotomix(int smol, std::vector<std::pair<int, int> >& nsort, int i)
 {
 	int max = i;
 	int min = 0;
@@ -97,9 +96,9 @@ int PmergeMe::dichotomix(int smol, vector<pair<int, int> >& nsort, int i)
 	}
 }
 
-void PmergeMe::putvalinvectorbordel(pair<int, int> smol, int pos, vector<pair<int, int> >& nsort)
+void PmergeMe::putvalinvectorbordel(std::pair<int, int> smol, int pos, std::vector<std::pair<int, int> >& nsort)
 {
-	vector<pair<int, int> >::iterator bordel = nsort.begin();
+	std::vector<std::pair<int, int> >::iterator bordel = nsort.begin();
 	
 	while (pos > 0)
 	{
@@ -110,10 +109,10 @@ void PmergeMe::putvalinvectorbordel(pair<int, int> smol, int pos, vector<pair<in
 	nsort.insert(bordel, smol);
 }
 
-vector<pair<int, int> > PmergeMe::insert(
-		const vector<pair<int, int> >& smol, const vector<pair<int, int> >& beeg, vector<pair<int, int> >& nsort)
+std::vector<std::pair<int, int> > PmergeMe::insert(
+		const std::vector<std::pair<int, int> >& smol, const std::vector<std::pair<int, int> >& beeg, std::vector<std::pair<int, int> >& nsort)
 {
-	int n = 0; // number corresponding to the paired index in beeg
+	int n = 0; // number corresponding to the std::paired index in beeg
 	int a = 0; // jacobstahl low
 	unsigned int b = 0; // jacobstahl high
 
@@ -161,15 +160,15 @@ vector<pair<int, int> > PmergeMe::insert(
 	return (nsort);
 }
 
-void PmergeMe::sort(vector<pair<int, int> >& main)
+void PmergeMe::sort(std::vector<std::pair<int, int> >& main)
 {
 	_level--;
 
 	if (main.size() < 2)
 		return ;
 
-	vector<pair<int, int> > beeg;
-	vector<pair<int, int> > smol;
+	std::vector<std::pair<int, int> > beeg;
+	std::vector<std::pair<int, int> > smol;
 
 	for (size_t i = 1; i < main.size(); i += 2)
 	{
@@ -184,7 +183,7 @@ void PmergeMe::sort(vector<pair<int, int> >& main)
 		smol.back().second = _level;
 	}
 
-	vector<pair<int, int> > nsort(beeg);
+	std::vector<std::pair<int, int> > nsort(beeg);
 	sort(nsort);
 
 	main = insert(smol, beeg, nsort);

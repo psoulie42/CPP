@@ -4,7 +4,7 @@ int compute(char* rpn)
 {
 	int a;
 	int b;
-	stack<int> st;
+	std::stack<int> st;
 	
 	while (*rpn)
 	{
@@ -40,13 +40,13 @@ int main(int ac, char **av)
 {
 	if (ac != 2)
 	{
-		cout << "This program needs a RPN expression as an argument to run." << endl;
+		std::cout << "This program needs a RPN expression as an argument to run." << std::endl;
 		return 1;
 	}
 
 	try
 	{
-		cout << compute(av[1]) << endl;
+		std::cout << compute(av[1]) << std::endl;
 	}
 	catch(const std::exception& e)
 	{

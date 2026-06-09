@@ -3,7 +3,7 @@
 int main(int ac, char **av)
 {
 	if (ac <= 2)
-		return (cout << "You need to run the program with a sequence of numbers to sort!" << endl, 1);
+		return (std::cout << "You need to run the program with a sequence of numbers to sort!" << std::endl, 1);
 
 	try
 	{

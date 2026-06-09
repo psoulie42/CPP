@@ -3,38 +3,33 @@
 void PmergeMe::startMergeDeq(char **av)
 {
 	int i = 0;
+	_start = (std::clock());
+
 	av++;
 	while (*av)
 	{
-		_deq.push_back(pair<int, int>(std::strtol(*av, NULL, 10), i++));
+		_deq.push_back(std::pair<int, int>(std::strtol(*av, NULL, 10), i++));
 		av++;
 	}
 
-	cout << endl << "Running ford-johnson with deque" << endl;
-	cout << "Initial sequence: ";
-	for (size_t i = 0; i < _deq.size(); i++)
-		cout << _deq[i].first << ' ';
-	cout << endl;
+	std::cout << std::endl << "Running ford-johnson with deque" << std::endl;
 
-	_start = (std::clock());
 	sort(_deq);
-	cout << "Merge done with deque:" << endl;
-	cout << "Sorted sequence: ";
+	std::cout << "Merge done with deque:" << std::endl;
+	std::cout << "Sorted sequence: ";
 	for (size_t i = 0; i < _deq.size(); i++)
-		cout << _deq[i].first << ' ';
-	cout << endl;
+		std::cout << _deq[i].first << ' ';
+	std::cout << std::endl;
 
-	int n = _deq.size();
 	if (isSorted())
-		cout << "Sequence is sorted correctly! " << _comps << " comparisons made." << endl
-			<< "Theoretical best worst case: " << static_cast<int>(n * std::log2(n) - 1.415 * n) << endl
-			<< "Time taken with deque: " << std::clock() - _start / CLOCKS_PER_SEC << "µs." << endl;
+		std::cout << "Sequence is sorted correctly! " << _comps << " comparisons made." << std::endl
+			<< "Time taken with deque: " << std::clock() - _start / CLOCKS_PER_SEC << "µs." << std::endl;
 	else
-		cout << "Merge failed at some point :(" << endl;
+		std::cout << "Merge failed at some point :(" << std::endl;
 	_comps = 0;
 }
 
-int PmergeMe::dichotomix(int smol, deque<pair<int, int> >& nsort, int i)
+int PmergeMe::dichotomix(int smol, std::deque<std::pair<int, int> >& nsort, int i)
 {
 	int max = i;
 	int min = 0;
@@ -58,9 +53,9 @@ int PmergeMe::dichotomix(int smol, deque<pair<int, int> >& nsort, int i)
 	}
 }
 
-void PmergeMe::putvalindequebordel(pair<int, int> smol, int pos, deque<pair<int, int> >& nsort)
+void PmergeMe::putvalindequebordel(std::pair<int, int> smol, int pos, std::deque<std::pair<int, int> >& nsort)
 {
-	deque<pair<int, int> >::iterator bordel = nsort.begin();
+	std::deque<std::pair<int, int> >::iterator bordel = nsort.begin();
 	
 	while (pos > 0)
 	{
@@ -71,10 +66,10 @@ void PmergeMe::putvalindequebordel(pair<int, int> smol, int pos, deque<pair<int,
 	nsort.insert(bordel, smol);
 }
 
-deque<pair<int, int> > PmergeMe::insert(
-		const deque<pair<int, int> >& smol, const deque<pair<int, int> >& beeg, deque<pair<int, int> >& nsort)
+std::deque<std::pair<int, int> > PmergeMe::insert(
+		const std::deque<std::pair<int, int> >& smol, const std::deque<std::pair<int, int> >& beeg, std::deque<std::pair<int, int> >& nsort)
 {
-	int n = 0; // number corresponding to the paired index in beeg
+	int n = 0; // number corresponding to the std::paired index in beeg
 	int a = 0; // jacobstahl low
 	unsigned int b = 0; // jacobstahl high
 
@@ -122,15 +117,15 @@ deque<pair<int, int> > PmergeMe::insert(
 	return (nsort);
 }
 
-void PmergeMe::sort(deque<pair<int, int> >& main)
+void PmergeMe::sort(std::deque<std::pair<int, int> >& main)
 {
 	_level--;
 
 	if (main.size() < 2)
 		return ;
 
-	deque<pair<int, int> > beeg;
-	deque<pair<int, int> > smol;
+	std::deque<std::pair<int, int> > beeg;
+	std::deque<std::pair<int, int> > smol;
 
 	for (size_t i = 1; i < main.size(); i += 2)
 	{
@@ -145,7 +140,7 @@ void PmergeMe::sort(deque<pair<int, int> >& main)
 		smol.back().second = _level;
 	}
 
-	deque<pair<int, int> > nsort(beeg);
+	std::deque<std::pair<int, int> > nsort(beeg);
 	sort(nsort);
 
 	main = insert(smol, beeg, nsort);

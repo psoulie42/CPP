@@ -4,7 +4,7 @@ int main(int ac, char** av)
 {
 	if (ac != 2)
 	{
-		std::cerr << "Error: This program needs an input file as argument to run!" << endl;
+		std::cerr << "Error: This program needs an input file as argument to run!" << std::endl;
 		return 1;
 	}
 	
@@ -18,7 +18,7 @@ int main(int ac, char** av)
 	}
 	catch (std::exception& e)
 	{
-		std::cerr << e.what() << endl;
+		std::cerr << e.what() << std::endl;
 		return 1;
 	}
 

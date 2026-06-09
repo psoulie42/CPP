@@ -4,28 +4,24 @@
 #include <ctime>
 #include <map>
 #include <exception>
-
-using std::cout;
-using std::endl;
-using std::string;
-using std::getline;
+#include <cstdlib>
 
 class BitcoinExchange
 {
 	private:
-		std::map<string, double> _map;
-		std::map<string, double> _ref;
+		std::map<std::string, double> _map;
+		std::map<std::string, double> _ref;
 
-		void checkLine(string line, double& value);
-		void checkCSVLine(string line, double& value);
+		void checkLine(std::string line, double& value);
+		void checkCSVLine(std::string line, double& value);
 
-		void printResult(std::map<string, double>::iterator, std::map<string, double>::iterator);
-		void printError(std::map<string, double>::iterator);
+		void printResult(std::map<std::string, double>::iterator, std::map<std::string, double>::iterator);
+		void printError(std::map<std::string, double>::iterator);
 
 	public:
-		string getDate(string line);
+		std::string getDate(std::string line);
 		void parseCSV();
-		void parseInput(const string& filename);
+		void parseInput(const std::string& filename);
 		void processFile();
 
 		BitcoinExchange();

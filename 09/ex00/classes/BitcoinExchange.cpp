@@ -6,8 +6,8 @@ void BitcoinExchange::processFile()
 {
 	parseCSV();
 
-	std::map<string, double>::iterator it = _map.begin();
-	std::map<string, double>::iterator it2;
+	std::map<std::string, double>::iterator it = _map.begin();
+	std::map<std::string, double>::iterator it2;
 	
 	while (it != _map.end())
 	{
@@ -26,9 +26,9 @@ void BitcoinExchange::processFile()
 	}
 }
 
-void BitcoinExchange::printError(std::map<string, double>::iterator it)
+void BitcoinExchange::printError(std::map<std::string, double>::iterator it)
 {
-	double val;
+	double val = 0;
 
 	try
 	{
@@ -36,15 +36,15 @@ void BitcoinExchange::printError(std::map<string, double>::iterator it)
 	}
 	catch (std::exception& e)
 	{
-		cout << it->first << ": " << e.what() << endl;
+		std::cout << it->first << ": " << e.what() << std::endl;
 	}
 }
 
-void BitcoinExchange::printResult(std::map<string, double>::iterator it, std::map<string, double>::iterator it2)
+void BitcoinExchange::printResult(std::map<std::string, double>::iterator it, std::map<std::string, double>::iterator it2)
 {
 	for (int i = 0; i < 10; i++)
-		cout << it->first[i];
-	cout << " => " << it->second << " = " << it->second * it2->second << endl;
+		std::cout << it->first[i];
+	std::cout << " => " << it->second << " = " << it->second * it2->second << std::endl;
 }
 
 void BitcoinExchange::parseCSV()
@@ -54,36 +54,36 @@ void BitcoinExchange::parseCSV()
 		throw std::runtime_error("Rends moi mon fichier wsh");
 
 	// parsing file
-	string line;
+	std::string line;
 	double value = 0;
 
-	getline(file, line);
+	std::getline(file, line);
 
 	if (line != "date,exchange_rate")
 	{
 		checkCSVLine(line, value);
-		_ref.insert(std::pair<string, double>(line, value));
+		_ref.insert(std::pair<std::string, double>(line, value));
 	}
 
-	while (getline(file, line))
+	while (std::getline(file, line))
 	{
 		checkCSVLine(line, value);
-		_ref.insert(std::pair<string, double>(line, value));
+		_ref.insert(std::pair<std::string, double>(line, value));
 	}
 }
 
-void BitcoinExchange::parseInput(const string& filename)
+void BitcoinExchange::parseInput(const std::string& filename)
 {
 	// opening file
-	std::ifstream file(filename);
+	std::ifstream file(filename.c_str());
 	if (!file)
 		throw std::runtime_error("Error: Couldn't open file!");
 
 	// parsing file
-	string line;
+	std::string line;
 	double value = 0;
 
-	getline(file, line);
+	std::getline(file, line);
 
 	if (line != "date | value")
 	{
@@ -93,13 +93,13 @@ void BitcoinExchange::parseInput(const string& filename)
 		}
 		catch(const std::exception& e)
 		{
-			_map.insert(std::pair<string, double>(line, -1));
+			_map.insert(std::pair<std::string, double>(line, -1));
 		}
 		
-		_map.insert(std::pair<string, double>(line, value));
+		_map.insert(std::pair<std::string, double>(line, value));
 	}
 	
-	while (getline(file, line))
+	while (std::getline(file, line))
 	{
 		try
 		{
@@ -107,14 +107,14 @@ void BitcoinExchange::parseInput(const string& filename)
 		}
 		catch(const std::exception& e)
 		{
-			_map.insert(std::pair<string, double>(line, -1));
+			_map.insert(std::pair<std::string, double>(line, -1));
 		}
 
-		_map.insert(std::pair<string, double>(line, value));
+		_map.insert(std::pair<std::string, double>(line, value));
 	}
 }
 
-void BitcoinExchange::checkCSVLine(string line, double& value)
+void BitcoinExchange::checkCSVLine(std::string line, double& value)
 {
 
 	// checking if the format of a line corresponds to:
@@ -146,19 +146,15 @@ void BitcoinExchange::checkCSVLine(string line, double& value)
 		else if (i > 10 && line[i] == '.')
 			dot = true;
 	}
-	
-	// checking and assigning date
-	char year[5], month[3], day[3];
 
-	line.copy(year, 4, 0);
-	line.copy(month, 2, 5);
-	line.copy(day, 2, 8);
+	// checking and assigning date
+	std::string year(line, 0, 4), month(line, 5, 2), day(line, 8, 2);
 
 	std::tm time1 = {};
 
-	time1.tm_year = std::strtod(year, NULL) - 1900;
-	time1.tm_mon = std::strtod(month, NULL) - 1;
-	time1.tm_mday = std::strtod(day, NULL);
+	time1.tm_year = std::strtod(year.c_str(), NULL) - 1900;
+	time1.tm_mon = std::strtod(month.c_str(), NULL) - 1;
+	time1.tm_mday = std::strtod(day.c_str(), NULL);
 
 	std::tm time2 = time1;
 	std::mktime(&time2);
@@ -170,13 +166,12 @@ void BitcoinExchange::checkCSVLine(string line, double& value)
 	}
 
 	// checking and assigning value
-	char val[11];
-	line.copy(val, 10, 11);
+	std::string val(line, 11, 10);
 
-	value = std::strtod(val, NULL);
+	value = std::strtod(val.c_str(), NULL);
 }
 
-void BitcoinExchange::checkLine(string line, double& value)
+void BitcoinExchange::checkLine(std::string line, double& value)
 {
 	// checking if the format of a line corresponds to:
 	// YYYY-MM-DD | value
@@ -211,17 +206,13 @@ void BitcoinExchange::checkLine(string line, double& value)
 	}
 
 	// checking and assigning date
-	char year[5], month[3], day[3];
-
-	line.copy(year, 4, 0);
-	line.copy(month, 2, 5);
-	line.copy(day, 2, 8);
+	std::string year(line, 0, 4), month(line, 5, 2), day(line, 8, 2);
 
 	std::tm time1 = {};
 
-	time1.tm_year = std::strtod(year, NULL) - 1900;
-	time1.tm_mon = std::strtod(month, NULL) - 1;
-	time1.tm_mday = std::strtod(day, NULL);
+	time1.tm_year = std::strtod(year.c_str(), NULL) - 1900;
+	time1.tm_mon = std::strtod(month.c_str(), NULL) - 1;
+	time1.tm_mday = std::strtod(day.c_str(), NULL);
 
 	std::tm time2 = time1;
 	std::mktime(&time2);
@@ -233,17 +224,16 @@ void BitcoinExchange::checkLine(string line, double& value)
 	}
 
 	// checking and assigning value
-	char val[11];
-	line.copy(val, 10, 13);
+	std::string val(line, 13, 10);
 
-	value = std::strtod(val, NULL);
+	value = std::strtod(val.c_str(), NULL);
 	if (value > 1000)
 		throw std::invalid_argument("Value can't be > 1000");	
 }
 
-string BitcoinExchange::getDate(string line)
+std::string BitcoinExchange::getDate(std::string line)
 {
-	string ret;
+	std::string ret;
 
 	for (int i = 0; i < 10; i++)
 	{
